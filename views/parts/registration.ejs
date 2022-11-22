@@ -1,0 +1,16 @@
+<div id="registration_block" class="switch_object">
+    <h2>Регистрация</h2>
+    <form id="registration">
+        <div class="input"><input class="input_field" type="text" placeholder="Логин" name="email"></div>
+        <div class="input"><input class="input_field" type="text" placeholder="Пароль" name="password"></div>
+        <div class="input"><input class="input_field" type="text" placeholder="Подтведить пароль" name="password_confirm"></div>
+        <div class="buttons">
+            <button type="submit">Подтвердить</button>
+            <button type="button" class="switch_button">Вход</button>
+        </div>
+    </form>
+</div>
+<script type="module">
+    import AJAX from "/js/Ajax.js"
+    new AJAX("registration", "input_field", "/registration", [1, 2]);
+</script>

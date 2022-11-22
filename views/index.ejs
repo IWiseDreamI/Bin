@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart retail</title>
+    <script>
+        let cookies = (document.cookie.split(";")).map((object) => {object = object.split("="); let result = {}; result[object[0]] = object[1]; return result;});
+        let User_ID = undefined
+        for(let i = 0; i < cookies.length; i++){
+            if(cookies[i].user != undefined){
+                User_ID = cookies[i].user
+            }        
+        }
+    </script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+</head>
+<body>
+    <%- include("./parts/authorization.ejs") %>
+    <%- include("./parts/registration.ejs") %>
+    <header>
+        <script>
+            let header = document.getElementsByTagName("header")[0]
+            if(User_ID != undefined){
+                header.innerHTML = (`<div class="user_button"></div>`)
+            }else{
+                header.innerHTML = (`<div class="popup_button"></div>`)
+            }
+        </script>        
+    </header>
+    <main class="main">
+        <script>
+            let main = document.getElementsByTagName("main")[0]
+            if(User_ID != undefined){
+                main.innerHTML = (`<%- include("./parts/personal.ejs") %>`)
+                const points = document.getElementById("points_value")
+                async function getPoints(id){
+                    data = {id: id}
+                    let user_points = await fetch("/points", {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8',
+                        },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if(data.error != undefined){
+                            alert(data.error)
+                        }
+                        points.innerHTML = "Бонусы: " + data.points
+                    });
+                }
+                getPoints(User_ID);
+            }else{
+                main.innerHTML = (`<%- include("./parts/main.ejs") %>`)
+            }
+        </script>
+	</main>
+</body>
+<script type="module">
+    import Pop from "/js/pop.js"
+    new Pop("popup_button", "switch_button", "switch_object");
+</script>
+</html>

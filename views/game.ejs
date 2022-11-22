@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/game.css">
+</head>
+<body>
+    <main class="main">
+        <div class="quiz">
+            <div class="quiz__head"><%= question %></div>
+            <div class="buttons">
+
+            </div>
+            <div class="quiz__footer">
+                <div class="footer__content" id="pages">0 / 0</div>
+            </div>      
+        </div>
+    </main>
+</body>    
+<script type="module">
+    import user_id from "/js/user_check.js"
+    user_id();
+</script>
+<script>
+    let answers = "<%= answers %>".split(",");
+    let quizz_value = "<%= value %>";
+    let correct = "<%= correct %>";
+    console.log(answers)
+    let buttons_body = ""
+    for(let i = 0; i < answers.length; i++){
+        if(answers[i] != correct){
+            buttons_body = buttons_body + `<div class="button">${answers[i]}</div>`;
+        }
+        else{
+            buttons_body = buttons_body + `<div class="button correct">${answers[i]}</div>`;
+        }
+    }
+    let buttons_html = document.getElementsByClassName("buttons")[0];
+    buttons_html.innerHTML = buttons_body;
+    let buttons = document.getElementsByClassName("button");
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", () => {
+            if(buttons[i].innerHTML == correct){
+                alert("YAY")
+                let data = {id: 1, points: quizz_value}
+                let url = "/add_points";
+                fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if(data.error != undefined){
+                        alert(data.error)
+                    }
+                    window.location.href = '/';  
+                });
+                alert(`Вам начислено ${quizz_value} баллов`)
+            }
+            else{
+                alert("NO")
+            }
+            window.location.href = '/';
+        })
+    }
+</script>
+</html>

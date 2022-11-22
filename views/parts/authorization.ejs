@@ -1,0 +1,15 @@
+<div id="authorization_block" class="switch_object">
+    <h2>Войти</h2>
+    <form id="authorization">
+        <div class="input"><input class="input_field" type="text" name="email" placeholder="Логин"></div>
+        <div class="input"><input class="input_field" type="text" name="password" placeholder="Пароль"></div>
+        <div class="buttons">
+            <button type="submit">Подтвердить</button>
+            <button type="button" class="switch_button">Регистрация</button>
+        </div>
+    </form>
+</div>
+<script type="module">
+    import AJAX from "/js/Ajax.js"
+    new AJAX("authorization", "input_field", "/authorization");
+</script>
