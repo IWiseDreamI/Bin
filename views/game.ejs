@@ -16,7 +16,6 @@
 
             </div>
             <div class="quiz__footer">
-                <div class="footer__content" id="pages">0 / 0</div>
             </div>      
         </div>
     </main>
@@ -45,7 +44,6 @@
     for(let i = 0; i < buttons.length; i++){
         buttons[i].addEventListener("click", () => {
             if(buttons[i].innerHTML == correct){
-                alert("YAY")
                 let data = {id: 1, points: quizz_value}
                 let url = "/add_points";
                 fetch(url, {
@@ -65,7 +63,7 @@
                 alert(`Вам начислено ${quizz_value} баллов`)
             }
             else{
-                alert("NO")
+                alert("Wrong answer")
             }
             window.location.href = '/';
         })

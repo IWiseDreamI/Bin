@@ -17,8 +17,14 @@ app.get("/", (request, response) => {
 
 app.get("/games/:game", async (request, response) => {
     let Game = request.params["game"];
-    let GameData = await sql.get_quizz(Game);
-    response.render(__dirname + `/views/game.ejs`, {Game: Game, question: GameData.question, answers: GameData.answers, correct: GameData.correct_answer, value: GameData.value})
+    if(Game == 1){
+        let GameData = await sql.get_quizz(Game);
+        response.render(__dirname + `/views/game.ejs`, {Game: Game, question: GameData.question, answers: GameData.answers, correct: GameData.correct_answer, value: GameData.value})    
+    }
+    else{
+        let GameData = await sql.get_quizz(Game);
+        response.render(__dirname + `/views/game2.ejs`, {Game: Game, question: GameData.question, answer: GameData.correct_answer, value: GameData.value})
+    }
 })
 
 app.get("/games", (request, response) => {

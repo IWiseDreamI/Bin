@@ -1,0 +1,30 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main__block{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.main__block h4{
+    text-align: center;
+}
+
+.main__img{
+    width: 100%;
+}
+
+h2, h4{
+    margin: 5px;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.9);
+}

@@ -62,3 +62,14 @@
     background-color: rgba(18, 146, 6, 0.739);
 }
 
+::-webkit-scrollbar {
+    width: 4px;               /* ширина всей полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* цвет зоны отслеживания */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);    /* цвет бегунка */
+}

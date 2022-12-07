@@ -1,0 +1,14 @@
+.games{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.games-list{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}

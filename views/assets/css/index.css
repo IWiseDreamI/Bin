@@ -154,7 +154,6 @@ a{
 }
 
 button{
-    width: 200px;
     border: none;
     font-size: 16px;
     transition: 0.6s;
@@ -162,6 +161,10 @@ button{
     font-family: Nunito;
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
+}
+
+#registration h2, #authorization h2{
+    background-color: transparent;
 }
 
 h2{
